@@ -31,7 +31,7 @@ class mtx_load_api
         
         private function _load_api()
         {
-            require_once 'cleaner.api.inc.php';
+            //require_once 'cleaner.api.inc.php';
             require_once 'ajax.api.inc.php';
             require_once 'custombox.api.inc.php';
             require_once 'db.tools.inc.php';

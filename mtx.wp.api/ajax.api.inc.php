@@ -17,7 +17,7 @@ class mtx_ajax_api
     
         public function __construct($function,$args)
         {
-            
+         
             $this->function = $function;
             $defaults = array(  'side' => 'frontend',
                                 'id_script' => null,
@@ -26,8 +26,7 @@ class mtx_ajax_api
                                 'action' => '',
                                 'auth' => false);
                                 
-            $this->args = array_merge($defaults,(array)$args);
-            
+            $this->args = array_merge((array)$defaults,(array)$args);
             add_action( 'wp_ajax_' . $this->args['action'], array($this, 'mtx_callback_function' ));
             if($this->args['side'] == 'frontend')
             {
