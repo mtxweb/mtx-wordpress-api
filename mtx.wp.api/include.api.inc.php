@@ -32,7 +32,7 @@ class include_api
             }
             foreach($widget_init_args as $arg)
             {
-                add_action('widgets_init', create_function('', 'return register_widget("' . $arg . '");'));
+                add_action('widgets_init', function() use ($arg) {return register_widget($arg);});
             }
         }
     }
