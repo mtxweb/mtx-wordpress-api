@@ -19,6 +19,7 @@ class mtx_load_api
     public $custombox;
     public $db;
     public $load;
+    public $admin;
     
         public function __construct()
         {
@@ -26,7 +27,8 @@ class mtx_load_api
             $this->ajax = new mtx_ajax_api_support();
             $this->custombox = new metabox_support();
             $this->db = new db_tools_support();
-            $this->load = new include_api(); 
+            $this->load = new include_api();
+            $this->admin = new admin_theme_support();
         }
         
         private function _load_api()
@@ -36,6 +38,7 @@ class mtx_load_api
             require_once 'custombox.api.inc.php';
             require_once 'db.tools.inc.php';
             require_once 'include.api.inc.php';
+            require_once 'admin.theme.api.inc.php';
         }
 }
 
