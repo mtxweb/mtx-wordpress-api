@@ -86,7 +86,46 @@ example of ajax call (admin side)
 $.post(ajaxurl, {action:'my_action',_nonce:mtx.nonce, ......)
 ```
 
-####2.3 Activate db tools
+####2.3 Create an options page for a theme
+
+First declare a new options page
+
+```bash
+$mtx->admin->option_theme_page($id, $title, $menu_item);
+```
+The first argument specifies the id of option page and prefix of option group. They do not allow symbols and spaces. It must be in a valid format for a php variable. The options array will be saved as **[$id]_theme_options**
+The second argument is the title of the option page.
+The third argument is the menu item text.
+
+You can now add fields.
+
+```bash
+$mtx->admin->[$id]->add_option(....);
+```
+
+```bash
+$mtx->admin->option_theme_page('test', 'My options page', 'theme options');
+$mtx->admin->test->add_option($name,$label, $default,$type,$data,$funtion,$sanitize);
+```
+
+$name: option name
+$label: field label
+$default: default value
+$type: type of field (allowed: text, textarea, select, checkbox, radio, color, date, func)
+$data: If it is a select or a radio group -> array(array(key,value),array(key,value).....)
+$function: If type is func, callable function
+$sanitize: sanitize type (allowed: text, textarea, int, float)
+
+```bash
+$mtx->admin->option_theme_page('test', 'My options page', 'theme options');
+$mtx->admin->test->add_option('name','your name, 'default value, 'text, null, null, 'text');
+$mtx->admin->test->add_option('gender','Gender', 'f','select', array(array('male', 'm'), array('female', 'f')));
+$mtx->admin->test->_init();
+```
+
+**note that the declaration must end with the _init () method**
+
+####2.4 Activate db tools
 
 db tools contains two small utility. To activate it is enough to write
 
@@ -99,7 +138,7 @@ Now in the admin panel you will find a new menu called mtx db tools. In this men
 1. database maintenance. Delete posts with status "autodraft" and "trash". After that performs an optimization of the database tables
 2. database backup. It performs a database dump and saves it in the folder mtx.wp.api with the name  db_backup.sql. It is not a good idea to leave it in that position ...
 
-####2.4 Activate inclusion tools
+####2.5 Activate inclusion tools
 
 mtx.wp.api has two utilities to automate the inclusion
 
