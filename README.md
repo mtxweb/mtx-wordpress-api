@@ -3,9 +3,9 @@ MTX WORDPRESS API
 
 A small collection of powerful API for wordpress developers.
 
-##Installation and use
+## Installation and use
 
-###1 Include mtx.load.api.php
+### 1 Include mtx.load.api.php
 
 Include mtx.load.api.php in wp functions.php
 
@@ -13,18 +13,18 @@ Include mtx.load.api.php in wp functions.php
 require_once 'path_to/mtx.load.api.php';
 ```
 
-###2 use $mtx istance
+### 2 use $mtx istance
 
-####2.1 Creating metaboxes
+#### 2.1 Creating metaboxes
 
 The first step is to create the structure of the metabox
 
 ```bash
 $mtx->custombox->new_custombox('test','My test metabox','post');
 ```  
-The first argument specifies the id of the metabox. They do not allow symbols and spaces. It must be in a valid format for a php variable.
-The second argument is the title.
-The third argument is the custom post type where will you appear to custombox.
+- The first argument specifies the id of the metabox. They do not allow symbols and spaces. It must be in a valid format for a php variable.
+- The second argument is the title.
+- The third argument is the custom post type where will you appear to custombox.
 
 You can now add fields. Attention, the right metaboxes be specified as follows
 
@@ -37,10 +37,10 @@ Add simple text field
 ```bash  
 $mtx->custombox->test->add_field('text', 'name', 'your name', 'attr');
 ```
-The first argument is the field type (text, textarea, ckb (for checkbox) and select).
-The second argument is the name of the field that will also be used for saving in the database.
-The third argument is the field label.
-The fourth argument is escape type (url - html - textarea - attr - int)
+- The first argument is the field type (text, textarea, ckb (for checkbox) and select).
+- The second argument is the name of the field that will also be used for saving in the database.
+- The third argument is the field label.
+- The fourth argument is escape type (url - html - textarea - attr - int)
 
 You can add as many desires fields.
 
@@ -58,7 +58,7 @@ $mtx->custombox->test->do_metabox();
 ```
 
 
-####2.2 Register ajax component
+#### 2.2 Register ajax component
 
 Easily add an ajax component:
 
@@ -86,7 +86,7 @@ example of ajax call (admin side)
 $.post(ajaxurl, {action:'my_action',_nonce:mtx.nonce, ......)
 ```
 
-####2.3 Create an options page for a theme
+#### 2.3 Create an options page for a theme
 
 First declare a new options page
 
@@ -108,13 +108,13 @@ $mtx->admin->option_theme_page('test', 'My options page', 'theme options');
 $mtx->admin->test->add_option($name,$label, $default,$type,$data,$funtion,$sanitize);
 ```
 
-$name: option name
-$label: field label
-$default: default value
-$type: type of field (allowed: text, textarea, select, checkbox, radio, color, date, func)
-$data: If it is a select or a radio group -> array(array(key,value),array(key,value).....)
-$function: If type is func, callable function
-$sanitize: sanitize type (allowed: text, textarea, int, float)
+- $name: option name
+- $label: field label
+- $default: default value
+- $type: type of field (allowed: text, textarea, select, checkbox, radio, color, date, func)
+- $data: If it is a select or a radio group -> array(array(key,value),array(key,value).....)
+- $function: If type is func, callable function
+- $sanitize: sanitize type (allowed: text, textarea, int, float)
 
 ```bash
 $mtx->admin->option_theme_page('test', 'My options page', 'theme options');
@@ -125,7 +125,7 @@ $mtx->admin->test->_init();
 
 **note that the declaration must end with the _init () method**
 
-####2.4 Activate db tools
+#### 2.4 Activate db tools
 
 db tools contains two small utility. To activate it is enough to write
 
@@ -138,7 +138,7 @@ Now in the admin panel you will find a new menu called mtx db tools. In this men
 1. database maintenance. Delete posts with status "autodraft" and "trash". After that performs an optimization of the database tables
 2. database backup. It performs a database dump and saves it in the folder mtx.wp.api with the name  db_backup.sql. It is not a good idea to leave it in that position ...
 
-####2.5 Activate inclusion tools
+#### 2.5 Activate inclusion tools
 
 mtx.wp.api has two utilities to automate the inclusion
 
