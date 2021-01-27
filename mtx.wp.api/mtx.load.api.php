@@ -28,17 +28,17 @@ class mtx_load_api
             $this->custombox = new metabox_support();
             $this->db = new db_tools_support();
             $this->load = new include_api();
-            $this->admin = new admin_theme_support();
+            $this->admin = new admin_theme();
         }
         
         private function _load_api()
         {
-            //require_once 'cleaner.api.inc.php';
+            
             require_once 'ajax.api.inc.php';
             require_once 'custombox.api.inc.php';
             require_once 'db.tools.inc.php';
             require_once 'include.api.inc.php';
-            require_once 'admin.theme.api.inc.php';
+            require_once 'themeadmin.class.php';
         }
 }
 
