@@ -122,5 +122,3 @@ class db_tools_support
         $obj = new mtx_db_tools();
     }
 }
-
-?>

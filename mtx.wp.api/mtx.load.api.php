@@ -43,4 +43,3 @@ class mtx_load_api
 }
 
 $mtx = new mtx_load_api();
-?>

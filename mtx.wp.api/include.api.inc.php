@@ -45,10 +45,12 @@ class include_api
         {
             foreach($mtx_functions as $file)
             {
+                if(strpos($file,'mtxcommentform') AND is_admin())
+                {
+                    continue;
+                }
                 require_once $file;
             }   
         }
     }
 }
-
-?>

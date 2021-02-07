@@ -168,5 +168,3 @@ class metabox_support
         $this->$id = new custom_box_api($id,$title,$type,$position ='side');
     }
 }
-
-?>

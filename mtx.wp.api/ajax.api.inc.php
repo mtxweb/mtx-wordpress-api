@@ -99,6 +99,3 @@ class mtx_ajax_api_support
         $$function = new mtx_ajax_api($function,$args);
     }
 }
-
-
-?>
