@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '/../../../plugin/wp-customize-image-gallery-control/customize-image-gallery-control.php';
+require_once dirname(__FILE__) . '/plugins/wp-customize-image-gallery-control/customize-image-gallery-control.php';
 function classExtend()
 {
 	class Prefix_Separator_Control extends WP_Customize_Control {
@@ -11,6 +11,20 @@ function classExtend()
 			<?php
 		}
 	}
+	
+	    class Custom_Text_Control extends WP_Customize_Control {
+        public $type = 'customtext';
+        public $extra = ''; // we add this for the extra description
+        public function render_content() {
+        ?>
+        <div  class="extra-text">
+			<label>
+				<span><?php echo esc_html( $this->extra ); ?></span>
+			</label>
+		</div>
+        <?php
+        }
+		}
 	
 
 }
@@ -28,6 +42,7 @@ class admin_theme
 	protected $separator = array();
 	protected $cropped_image = array();
 	protected $gallery = array();
+	protected $text = array();
 		public function __construct()
 		{
 			global $wp_customize;
@@ -44,6 +59,10 @@ class admin_theme
 			$this->separator[] = array($id,$section,$priority);
 		}
 	
+		public function addText($id,$text,$section,$priority)
+		{
+			$this->text[] = array($id,$text,$section,$priority);
+		}
 	
 		public function addControl($id,$default,$label,$type,$section,$priority=10,$choises=false)
 		{
@@ -80,6 +99,23 @@ class admin_theme
 				) );
 			}
 			
+			foreach($this->text as $text)
+			{
+				$this->wpc->add_setting($text[0], array(
+						'default' => '',
+						'type' => 'customtext_control',
+            			'capability' => 'edit_theme_options',
+					) );
+				
+				$this->wpc->add_control( new Custom_Text_Control( $this->wpc, $text[0], array(
+					'label' => '',
+					'section' => $text[2],
+					'extra' => $text[1],
+					'priority' => $text[3],
+					) ) 
+				);
+				
+			}
 			
 			foreach($this->control as $control)
 			{
